@@ -6,7 +6,6 @@ import { WebSocketServer } from 'ws';
 import { randomUUID } from 'crypto';
 
 const PORT = process.env.PORT || 4000;
-const HOCUSPOCUS_PORT = process.env.HOCUSPOCUS_PORT || 4444;
 
 const app = express();
 app.use(cors());
@@ -16,7 +15,7 @@ const prisma = new PrismaClient();
 
 // Setup Hocuspocus
 const server = Server.configure({
-    port: HOCUSPOCUS_PORT, // Hocuspocus can listen directly, or we can attach.
+    port: PORT, // Single port for both HTTP and WebSocket
     // We want to combine with Express to serve API endpoints if needed.
     // But Hocuspocus listens on a port.
     // If we want express routes, we can't easily share the SAME port unless we attach upgrade handler manually.
@@ -84,9 +83,7 @@ app.post('/rooms', async (req, res) => {
 // If we want express + hocuspocus on same port, we need to bind.
 // Standard Node/Express/WS pattern:
 
-app.listen(PORT, () => {
-    console.log(`Express Server listening on port ${PORT}`);
-});
 
 server.listen();
-console.log(`Hocuspocus running on port ${HOCUSPOCUS_PORT}`);
+console.log(`Server running on port ${PORT}`);
+
