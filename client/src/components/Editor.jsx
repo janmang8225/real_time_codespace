@@ -32,7 +32,7 @@ const Editor = ({ roomId, username, color }) => {
 
         // Connect to websocket server
         const provider = new WebsocketProvider(
-            'wss://real-time-codespace.onrender.com:4444', // Hocuspocus WS Server
+            'wss://real-time-codespace.onrender.com', // Single port
             roomId, // Room ID
             doc
         );
@@ -86,5 +86,6 @@ const Editor = ({ roomId, username, color }) => {
 };
 
 export default Editor;
+
 
 
