@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Room {
+  id        String   @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   Bytes    // Storing Yjs binary update or just text? Text is easier for simple view, but Bytes for Yjs state.
+  // For a collaborative editor, we typically store the binary Yjs update vector.
+  // But to keep it simple, we might just store the text representation primarily for "load" 
+  // and let the live session handle the rest? 
+  // No, proper Yjs persistence needs the binary state vector to merge histories.
+  // Let's store binary.
+}
