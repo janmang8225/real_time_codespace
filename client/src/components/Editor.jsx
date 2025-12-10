@@ -32,7 +32,7 @@ const Editor = ({ roomId, username, color }) => {
 
         // Connect to websocket server
         const provider = new WebsocketProvider(
-            'ws://localhost:4000', // Server URL
+            'https://real-time-codespace.onrender.com/', // Server URL
             roomId, // Room ID
             doc
         );
@@ -86,3 +86,4 @@ const Editor = ({ roomId, username, color }) => {
 };
 
 export default Editor;
+
