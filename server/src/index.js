@@ -20,7 +20,9 @@ const server = Server.configure({
     // But Hocuspocus listens on a port.
     // If we want express routes, we can't easily share the SAME port unless we attach upgrade handler manually.
     // Hocuspocus has an option `onRequest` or we can just use `handleUpgrade`.
-
+    cors: {
+        origin: '*', // restrict to your frontend domain
+    },
     async onStoreDocument(data) {
         // This hook is called when the document changes and needs to be saved.
         // data.document is the Y.Doc
@@ -86,4 +88,5 @@ app.post('/rooms', async (req, res) => {
 
 server.listen();
 console.log(`Server running on port ${PORT}`);
+
 
