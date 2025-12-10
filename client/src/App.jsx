@@ -18,7 +18,7 @@ function App() {
     // In a real app we might ask server for ID, but generating one is fine for this demo
     // or we fetch from POST /rooms
     try {
-      const response = await fetch('http://localhost:4000/rooms', { method: 'POST' });
+      const response = await fetch('https://real-time-codespace.onrender.com/rooms', { method: 'POST' });
       const data = await response.json();
       setRoomId(data.id);
       setIsInRoom(true);
